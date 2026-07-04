@@ -1,0 +1,72 @@
+:root {
+    --bg-image: url('bg.jpg'); /* change the 'bg' to the actual name of your image. */
+    
+    --font-size: 10px;
+    --letter-spacing: -0.5px;
+    --line-height: 0.95;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    font-family: monospace, 'Courier New', Courier;
+    overflow: hidden; 
+}
+.mosaic-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+    font-weight: 900;
+    word-break: break-all;
+    text-align: justify;
+    overflow: hidden;
+}
+
+.visual-layer {
+    background-image: var(--bg-image);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    pointer-events: none;
+    user-select: none;
+
+    
+    /* OPTION A: ORIGINAL COLOR */
+   /* filter: contrast(140%) brightness(110%); */
+    
+    /* OPTION B: BLACK & WHITE */
+    filter: grayscale(100%) contrast(160%) brightness(100%); 
+}
+
+.selection-layer {
+    color: transparent;
+    background: transparent;
+    pointer-events: auto;
+    user-select: text;
+    z-index: 2;
+}
+
+.selection-layer::selection {
+    background-color: #0078d7; 
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.selection-layer::-moz-selection {
+    background-color: #0078d7;
+    color: #ffffff !important;
+}
