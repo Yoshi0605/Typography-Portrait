@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Typographic Text Mosaic</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="textMosaicVisual" class="mosaic-base visual-layer"></div>
+    <div id="textMosaicSelectable" class="mosaic-base selection-layer"></div>
+
+    // Change the text content in the MY_LYRICS variable with your desired lyrics/text.
+    <script>
+        const MY_LYRICS = `I know a place
+                It's somewhere I go when I need to remember your face
+                We get married in our heads
+                Something to do whilst we try to recall how we met
+
+                Do you think I have forgotten?
+                Do you think I have forgotten?
+                Do you think I have forgotten about you?
+
+                You and I
+                Were alive
+                With nothing to do I could lay and just look in your eyes
+                Wait and pretend
+                Hold on and hope that we'll find our way back in the end
+
+                Do you think I have forgotten?
+                Do you think I have forgotten?
+                Do you think I have forgotten about you?
+                Do you think I have forgotten?
+                Do you think I have forgotten?
+                Do you think I have forgotten about you?
+
+                There was something about you that now I can't remember
+                It's the same damn thing that made my heart surrender
+                And I'll miss you on a train
+                I'll miss you in the morning
+                I never know what to think about, so think about you
+                (I think about you)
+                About you
+                Do you think I have forgotten about you?
+                About you
+                About you
+                Do you think I have forgotten about you?`
+
+        const BASE_RATIO = window.devicePixelRatio || 1;
+
+        function generateMosaic() {
+            const visual = document.getElementById('textMosaicVisual');
+            const selectable = document.getElementById('textMosaicSelectable');
+            
+            const cleanText = MY_LYRICS.replace(/\s+/g, ' ').trim() + " ";
+            
+            visual.style.height = 'auto';
+            selectable.style.height = 'auto';
+            
+            let dynamicContent = cleanText.repeat(30);
+            visual.textContent = dynamicContent;
+            selectable.textContent = dynamicContent;
+            
+            while (visual.offsetHeight < window.innerHeight) {
+                dynamicContent += cleanText.repeat(15);
+                visual.textContent = dynamicContent;
+                selectable.textContent = dynamicContent;
+            }
+            
+            visual.style.height = '100vh';
+            selectable.style.height = '100vh';
+
+            const currentScale = (window.devicePixelRatio || 1) / BASE_RATIO;
+            if (currentScale > 1) {
+                const zoomPercentage = currentScale * 100;
+                visual.style.backgroundSize = `${zoomPercentage}% ${zoomPercentage}%`;
+            } else {
+                visual.style.backgroundSize = '100% 100%';
+            }
+        }
+
+        window.onload = generateMosaic;
+        window.onresize = generateMosaic; 
+    </script>
+</body>
+</html>
