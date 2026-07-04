@@ -1,2 +1,1 @@
-# Typography-Portrait
-An interactive typographic portrait generator that molds custom text into a visual mosaic with responsive browser zoom scaling and clean selection highlights.
+A lightweight, pure frontend typographic mosaic engine that seamlessly clips custom images into dense walls of text. Built with a dual-layer architecture to preserve crisp, default browser text highlights and dynamic real-time zoom synchronization.
